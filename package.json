@@ -6,7 +6,9 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "amqplib": "^0.5.1"
+    "amqplib": "^0.5.1",
+    "bluebird": "^3.5.0",
+    "node-uuid": "^1.4.7"
   },
   "devDependencies": {
     "eslint": "^3.16.1",
