@@ -1,7 +1,7 @@
 const amqp = require('amqplib');
 
 amqp.connect('amqp://rabbitmq:rabbitmq@10.82.20.188').then((conn) => {
-  //process.once('SIGINT', () => { conn.close(); });
+  // process.once('SIGINT', () => { conn.close(); });
   return conn.createChannel().then((ch) => {
     let ok = ch.assertQueue('task_queue', { durable: true });
 
@@ -11,9 +11,13 @@ amqp.connect('amqp://rabbitmq:rabbitmq@10.82.20.188').then((conn) => {
       const secs = body.split('.').length - 1;
       // console.log(" [x] Task takes %d seconds", secs);
       setTimeout(() => {
-        console.log(' [x] Done');
+        console.log(' [x] Done')
+        ;
+
+        // sendback
         const newmsg = 'return from the dark side';
         ch.sendToQueue('task_queue2', new Buffer(newmsg), { deliveryMode: true });
+
         ch.ack(msg);
       }, secs * 1000);
     }
