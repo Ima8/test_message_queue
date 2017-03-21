@@ -1,6 +1,6 @@
 const amqp = require('amqplib');
 
-amqp.connect('amqp://rabbitmq:rabbitmq@10.5.5.210').then(conn => conn.createChannel().then((ch) => {
+amqp.connect('amqp://rabbitmq:rabbitmq@localhost').then(conn => conn.createChannel().then((ch) => {
   const ex = 'logs';
   const ok = ch.assertExchange(ex, 'fanout', { durable: false });
 

@@ -1,6 +1,6 @@
 const amqp = require('amqplib');
 
-amqp.connect('amqp://rabbitmq:rabbitmq@10.5.5.210').then((conn) => {
+amqp.connect('amqp://rabbitmq:rabbitmq@localhost').then((conn) => {
   // process.once('SIGINT', () => { conn.close(); });
   return conn.createChannel().then((ch) => {
     let ok = ch.assertQueue('task_queue', { durable: true });
